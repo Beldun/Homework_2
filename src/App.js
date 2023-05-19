@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+class Change extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      square1: 'red',
+      square2: 'blue'
+    };
+  }
+
+  handleSquareClick = () => {
+    this.setState(prevState => ({
+      square1: prevState.square2,
+      square2: prevState.square1
+    }));
+  };
+
+  render() {
+    const { square1, square2 } = this.state;
+
+    return (
+      <div>
+        <div
+          style={{
+            width: '250px',
+            height: '250px',
+            backgroundColor: square1
+          }}
+          onClick={this.handleSquareClick}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        </div>
+        <div
+          style={{
+            width: '250px',
+            height: '250px',
+            backgroundColor: square2
+          }}
+          onClick={this.handleSquareClick}
+        >
+        </div>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default Change;
